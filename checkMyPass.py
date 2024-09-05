@@ -4,7 +4,7 @@ import sys
 
 def request_api_data(query_char):
     '''
-    Query Password Hashes based on SHA1
+    Query Password Hashes based on SHA1 first 5 chars
     '''
     url = 'https://api.pwnedpasswords.com/range'
     response = requests.get(f"{url}/{query_char}")
@@ -15,6 +15,9 @@ def request_api_data(query_char):
     return response    
 
 def get_password_leaks_count(hashes, hash_to_check):
+    '''
+    Extract Count for Password hash that matches in the results
+    '''
     result = 0
     for hash in hashes:
         dta = hash.split(':')
